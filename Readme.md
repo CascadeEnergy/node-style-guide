@@ -47,9 +47,7 @@ of a file. Windows-style newlines (`\r\n`) are forbidden inside any repository.
 
 ## No trailing whitespace
 
-Just like you brush your teeth after every meal, you clean up any trailing
-whitespace in your JS files before committing. Otherwise the rotten smell of
-careless neglect will eventually drive away contributors and/or co-workers.
+Clean up any trailing whitespace in your JS files before committing.
 
 ## Use Semicolons
 
