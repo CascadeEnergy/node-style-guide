@@ -154,19 +154,18 @@ User.findOne({ name: 'foo' }).populate('bar')
 ## Declare one variable per var statement
 
 Declare one variable per var statement, it makes it easier to re-order the
-lines. However, ignore [Crockford][crockfordconvention] when it comes to
-declaring variables deeper inside a function, just put the declarations wherever
-they make sense.
+lines. Hoist and organize variables to avoid "lying" about scope.
 
 *Right:*
 
 ```js
 var keys   = ['foo', 'bar'];
 var values = [23, 42];
+var key;
 
 var object = {};
 while (keys.length) {
-  var key = keys.pop();
+  key = keys.pop();
   object[key] = values.pop();
 }
 ```
@@ -176,11 +175,10 @@ while (keys.length) {
 ```js
 var keys = ['foo', 'bar'],
     values = [23, 42],
-    object = {},
-    key;
+    object = {};
 
 while (keys.length) {
-  key = keys.pop();
+  var key = keys.pop();
   object[key] = values.pop();
 }
 ```
@@ -256,8 +254,7 @@ File.fullPermissions = 0777;
 
 ## Object / Array creation
 
-Use trailing commas and put *short* declarations on a single line. Only quote
-keys when your interpreter complains:
+Only quote keys when your interpreter complains:
 
 *Right:*
 
@@ -265,7 +262,7 @@ keys when your interpreter complains:
 var a = ['hello', 'world'];
 var b = {
   good: 'code',
-  'is generally': 'pretty',
+  'is generally': 'pretty'
 };
 ```
 
@@ -280,48 +277,26 @@ var b = {"good": 'code'
         };
 ```
 
-## Use the === operator
-
-Programming is not about remembering [stupid rules][comparisonoperators]. Use
-the triple equality operator as it will work just as expected.
-
-*Right:*
-
-```js
-var a = 0;
-if (a !== '') {
-  console.log('winning');
-}
-
-```
-
-*Wrong:*
-
-```js
-var a = 0;
-if (a == '') {
-  console.log('losing');
-}
-```
+## Use the correct comparison operator
 
 [comparisonoperators]: https://developer.mozilla.org/en/JavaScript/Reference/Operators/Comparison_Operators
 
-## Use multi-line ternary operator
+## Use single-line ternary operator
 
-The ternary operator should not be used on a single line. Split it up into multiple lines instead.
+First, try not to use the ternary operator. But, when you have to, the ternary operator should be used on a single line. Do not split it up into multiple lines.
 
 *Right:*
+
+```js
+var foo = (a === b) ? 1 : 2;
+```
+
+*Wrong:*
 
 ```js
 var foo = (a === b)
   ? 1
   : 2;
-```
-
-*Wrong:*
-
-```js
-var foo = (a === b) ? 1 : 2;
 ```
 
 ## Do not extend built-in prototypes
@@ -454,7 +429,7 @@ Use closures, but don't nest them. Otherwise your code will become a mess.
 *Right:*
 
 ```js
-setTimeout(function() {
+setTimeout(function connectLater() {
   client.connect(afterConnect);
 }, 1000);
 
@@ -466,14 +441,14 @@ function afterConnect() {
 *Wrong:*
 
 ```js
-setTimeout(function() {
-  client.connect(function() {
+setTimeout(function connectLater() {
+  client.connect(function afterConnect() {
     console.log('losing');
   });
 }, 1000);
 ```
 
-## Use slashes for comments
+## Use slashes for non-documentation comments
 
 Use slashes for both single line and multi line comments. Try to write
 comments that explain higher level mechanisms or clarify difficult
@@ -519,12 +494,12 @@ if (isSessionValid) {
 
 ## Object.freeze, Object.preventExtensions, Object.seal, with, eval
 
-Crazy shit that you will probably never need. Stay away from it.
+Crazy things that you will probably never need. Stay away from it.
 
 ## Getters and setters
 
-Do not use setters, they cause more problems for people who try to use your
-software than they can solve.
+Favor not using setters, they cause more problems for people who try to use your
+software than they can solve. But use them if they have useful and logical side effects.
 
 Feel free to use getters that are free from [side effects][sideeffect], like
 providing a length property for a collection class.
