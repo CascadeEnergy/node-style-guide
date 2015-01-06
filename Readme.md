@@ -4,6 +4,8 @@ This is a guide for writing consistent and aesthetically pleasing node.js code.
 It is inspired by what is popular within the community, and flavored with some
 personal opinions.
 
+There are two more style guides which can fill in the blanks, [air-bnb](https://github.com/airbnb/javascript) and [idiomatic js](https://github.com/rwaldron/idiomatic.js)
+
 There is a .jshintrc which enforces these rules as closely as possible. You can
 either use that and adjust it, or use
 [this script](https://gist.github.com/kentcdodds/11293570) to make your own.
