@@ -17,7 +17,9 @@ lambda
          |     |     |    |_ install
          |     |     |    |_ samples
          |     |     |         |
-         |     |     |         |_ sampleEventA
+         |     |     |         |_ events
+         |     |     |              |
+         |     |     |              |_ sampleEventA.json
          |     |     | 
          |     |     |_ index.js  --> exports.`actionA` = ...
          |     |     
