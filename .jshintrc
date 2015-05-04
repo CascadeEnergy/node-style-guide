@@ -1,4 +1,5 @@
 {
+	"esnext": true,
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
@@ -12,7 +13,6 @@
   "eqnull": true,
   "node": true,
   "globals": {
-    "mocha": false,
     "describe": false,
     "it": false,
     "before": false,
